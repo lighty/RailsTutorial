@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class UsersEditTest < ActionDispatch::IntegrationTest
-  setup do
+
+  def setup
     @user = users(:michael)
   end
 
@@ -19,13 +20,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   test "successful edit" do
     get edit_user_path(@user)
     assert_template 'users/edit'
-    name = "Lighty Example"
-    email = 'foo@example.com'
-    patch user_path(@user, params:{ user:{name: name,
-                                    email: email,
-                                    password: '',
-                                    password_confirmation: ''}})
-    assert_not flash.empty?                                    
+    name = 'Foo Bar'
+    email = 'foo@bar.com'
+    patch user_path(@user), params:{ user:{ name: name,
+                                    email: email}}
+    assert_not flash.empty?
     assert_redirected_to @user
     @user.reload
     assert_equal name, @user.name
