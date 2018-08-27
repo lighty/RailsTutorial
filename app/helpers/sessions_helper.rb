@@ -15,6 +15,10 @@ module SessionsHelper
     end
   end
 
+  def current_user?(user)
+    current_user == user
+  end
+
   def logged_in?
     !current_user.nil?
   end
@@ -36,4 +40,5 @@ module SessionsHelper
     cookies.delete :user_id
     cookies.delete :remember_token
   end
+
 end
