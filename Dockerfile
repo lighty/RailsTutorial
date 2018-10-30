@@ -6,6 +6,7 @@ RUN apt-get update && \
                        mysql-client \
                        postgresql-client \
                        sqlite3 \
+                       imagemagick \
 		       --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 COPY Gemfile $APP_ROOT
